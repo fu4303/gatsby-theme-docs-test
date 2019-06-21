@@ -1,10 +1,4 @@
-import React from 'react';
-import { Link } from 'gatsby';
-import { MDXProvider } from '@mdx-js/tag';
-import MDXRenderer from 'gatsby-mdx/mdx-renderer';
-import { preToCodeBlock } from 'mdx-utils';
-import Playground from '../components/Playground';
-import Code from '../components/mdx/Code';
+import { MDXProvider } from "@mdx-js/react";
 
 const components = {
   pre: preProps => {
