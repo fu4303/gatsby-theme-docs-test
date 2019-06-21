@@ -19,21 +19,22 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const pages = result.data.allFile.edges.map(({ node }) => node);
 
+  const getPath = page => (page.name === "index" ? "/" : `/${page.name}`);
   pages.forEach(page => {
     actions.createPage({
-      path: `/${page.name}`,
-      component: require.resolve('./src/templates/docs.js'),
+      path: getPath(page),
+      component: require.resolve("./src/templates/docs.js"),
       context: {
         nav: pages.map(p => {
           return {
             id: p.id,
-            path: `/${p.name}`,
+            path: getPath(p),
             name: p.name,
-            current: p.id === page.id,
+            current: p.id === page.id
           };
         }),
-        body: page.childMdx.code.body,
-      },
+        body: page.childMdx.code.body
+      }
     });
   });
 };
