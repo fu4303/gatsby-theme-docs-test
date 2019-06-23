@@ -7,17 +7,16 @@ import Playground from "../components/Playground";
 import Code from "../components/mdx/Code";
 
 const components = {
-  Playground,
   pre: preProps => {
     const props = preToCodeBlock(preProps);
-    // if there's a codeString and some props, we passed the test
     if (props) {
-      return <Code {...props} />;
+      // if there's a codeString and some props, we passed the test
+      return <Playground {...props} />;
     } else {
       // it's possible to have a pre without a code in it
       return <pre {...preProps} />;
     }
-  }
+  },
 };
 
 export default ({ pageContext }) => (

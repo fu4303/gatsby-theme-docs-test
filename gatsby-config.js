@@ -1,14 +1,15 @@
 module.exports = {
   plugins: [
     {
-      resolve: 'gatsby-mdx',
+      resolve: "gatsby-mdx",
     },
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: "gatsby-source-filesystem",
       options: {
-        name: 'blah',
+        name: "blah",
         path: `${__dirname}/src`,
       },
     },
+    `gatsby-plugin-emotion`,
   ],
 };
