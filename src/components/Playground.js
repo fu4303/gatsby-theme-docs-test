@@ -72,7 +72,11 @@ function Editor({ codeString, ...rest }) {
   return (
     <div>
       <button onClick={copy}>Copy</button>
-      <LiveEditor css={{ padding: "1.5rem" }} {...rest} onChange={setCode} />
+      <LiveEditor
+        css={{ padding: "1.5rem", fontSize: "1rem" }}
+        {...rest}
+        onChange={setCode}
+      />
       {toast && <div>{toast}</div>}
     </div>
   );
