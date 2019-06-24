@@ -3,10 +3,13 @@ import { Link } from "gatsby";
 import { MDXProvider } from "@mdx-js/react";
 import MDXRenderer from "gatsby-mdx/mdx-renderer";
 import { preToCodeBlock } from "mdx-utils";
+import Global from "../components/Global";
+import Sidebar from "../components/Sidebar";
+import Stack from "../components/Stack";
 import Playground from "../components/Playground";
-import Code from "../components/mdx/Code";
 
 const components = {
+  wrapper: props => <Stack space="1.5rem" {...props} />,
   pre: preProps => {
     const props = preToCodeBlock(preProps);
     if (props) {
@@ -21,17 +24,41 @@ const components = {
 
 export default ({ pageContext }) => (
   <MDXProvider components={components}>
-    <nav>
-      <ul>
-        {pageContext.nav.map(({ id, name, path, current }) => (
-          <li key={id}>
-            <Link to={path} style={{ color: current && "tomato" }}>
-              {name}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
-    <MDXRenderer>{pageContext.body}</MDXRenderer>
+    <Global />
+    <Sidebar css={{ minHeight: "100vh" }}>
+      <Sidebar.Aside
+        css={{ backgroundColor: "hsl(220, 30%, 94%)", padding: "2rem" }}
+      >
+        <Stack space="2rem">
+          <div css={{ fontSize: "2rem", fontWeight: "900" }}>
+            {pageContext.siteTitle}
+          </div>
+          <nav>
+            <Stack as="ul" space="0.5rem">
+              {pageContext.nav.map(({ id, name, path, current }) => (
+                <li key={id}>
+                  <Link
+                    to={path}
+                    css={{
+                      textTransform: "capitalize",
+                      textDecoration: "none",
+                      fontWeight: current ? 700 : 400,
+                      "&:hover": {
+                        textDecoration: "underline",
+                      },
+                    }}
+                  >
+                    {name}
+                  </Link>
+                </li>
+              ))}
+            </Stack>
+          </nav>
+        </Stack>
+      </Sidebar.Aside>
+      <Sidebar.Main css={{ padding: "2rem" }}>
+        <MDXRenderer>{pageContext.body}</MDXRenderer>
+      </Sidebar.Main>
+    </Sidebar>
   </MDXProvider>
 );
