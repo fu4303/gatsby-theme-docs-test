@@ -1,4 +1,7 @@
 module.exports = {
+  siteMetadata: {
+    title: "Gatsby Theme Docs",
+  },
   plugins: [
     {
       resolve: "gatsby-mdx",
