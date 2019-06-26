@@ -6,6 +6,7 @@ import { preToCodeBlock } from "mdx-utils";
 import Global from "../components/Global";
 import Sidebar from "../components/Sidebar";
 import Stack from "../components/Stack";
+import Nav from "../components/Nav";
 import Playground from "../components/Playground";
 
 const components = {
@@ -30,30 +31,16 @@ export default ({ pageContext }) => (
         css={{ backgroundColor: "hsl(220, 30%, 94%)", padding: "2rem" }}
       >
         <Stack space="2rem">
-          <div css={{ fontSize: "2rem", fontWeight: "900" }}>
+          <div css={{ fontSize: "1.5rem", fontWeight: "900" }}>
             {pageContext.siteTitle}
           </div>
-          <nav>
-            <Stack as="ul" space="0.5rem">
-              {pageContext.nav.map(({ id, name, path, current }) => (
-                <li key={id}>
-                  <Link
-                    to={path}
-                    css={{
-                      textTransform: "capitalize",
-                      textDecoration: "none",
-                      fontWeight: current ? 700 : 400,
-                      "&:hover": {
-                        textDecoration: "underline",
-                      },
-                    }}
-                  >
-                    {name}
-                  </Link>
-                </li>
-              ))}
-            </Stack>
-          </nav>
+          <Nav>
+            {pageContext.nav.map(({ id, name, path, current }) => (
+              <Nav.Item key={id} href={path} current={current}>
+                {name}
+              </Nav.Item>
+            ))}
+          </Nav>
         </Stack>
       </Sidebar.Aside>
       <Sidebar.Main css={{ padding: "2rem" }}>
