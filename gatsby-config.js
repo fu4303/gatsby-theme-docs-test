@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: "Gatsby Theme Docs",
+    title: "Doctrine",
   },
   plugins: [
     {
