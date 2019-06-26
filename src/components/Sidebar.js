@@ -1,6 +1,6 @@
 import React from "react";
 
-function Aside({ as: Comp = "aside", size = "20rem", ...rest }) {
+function Aside({ as: Comp = "aside", size = "12rem", ...rest }) {
   return <Comp css={{ flexGrow: 1, flexBasis: size }} {...rest} />;
 }
 
